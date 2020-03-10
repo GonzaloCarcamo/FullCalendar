@@ -19,6 +19,9 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    respond_to do |format|
+      format.js { render 'edit'}
+    end
   end
 
   # POST /events
@@ -30,9 +33,12 @@ class EventsController < ApplicationController
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
+        format.js {render 'update'}
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.js { render :error }
+
       end
     end
   end
@@ -44,9 +50,11 @@ class EventsController < ApplicationController
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.js {render 'error'}
       end
     end
   end
@@ -58,6 +66,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
+        format.js {render 'update'}
     end
   end
 
