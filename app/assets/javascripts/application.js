@@ -16,4 +16,5 @@
 //= require jquery/dist/jquery
 //= require moment/moment
 //= require fullcalendar/dist/fullcalendar
+//= require fullcalendar/dist/locale/es
 //= require_tree .

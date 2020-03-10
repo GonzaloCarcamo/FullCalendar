@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Event.destroy_all
+
+20.times do
+ start_at = Random.rand(10).days.ago + 5.days
+ Event.create!(title: Faker::Name.name, start: start_at)
+end
